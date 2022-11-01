@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    username: cake
+    password: cake
+    url: jdbc:mysql://localhost:3306/cakeshop
