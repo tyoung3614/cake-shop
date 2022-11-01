@@ -3,6 +3,8 @@ package com.tara.cakeshop.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import com.tara.cakeshop.entity.Client;
 
@@ -19,7 +21,9 @@ public class DefaultClientDao implements ClientDao {
     namedParameters.addValue("name", client.getName());
     namedParameters.addValue("phone", client.getPhone());
     namedParameters.addValue("email", client.getEmail());
-    jdbcTemplate.update(sql, namedParameters);
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+    jdbcTemplate.update(sql, namedParameters, keyHolder);
+    client.setClientId(keyHolder.getKey().longValue());
     return client;
   }
 

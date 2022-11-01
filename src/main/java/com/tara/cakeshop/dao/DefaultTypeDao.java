@@ -18,7 +18,7 @@ public class DefaultTypeDao implements TypeDao {
   private NamedParameterJdbcTemplate jdbcTemplate;
   
   @Override
-  public List<Type> getTypes() {
+  public List<Type> getTypesFromDatabase() {
     String sql = "select * from type";
     
     return jdbcTemplate.query(sql, new RowMapper<Type>() {

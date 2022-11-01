@@ -1,13 +1,9 @@
-/**
- * 
- */
 package com.tara.cakeshop.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.tara.cakeshop.dao.TypeDao;
 import com.tara.cakeshop.entity.Type;
-
 
 public class DefaultTypeController implements TypeController {
   
@@ -17,7 +13,7 @@ public class DefaultTypeController implements TypeController {
   
   @Override
   public List<Type> getTypes() {
-    return typeDao.getTypes();
+    return typeDao.getTypesFromDatabase();
   }
 
 }

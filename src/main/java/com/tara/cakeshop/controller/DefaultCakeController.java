@@ -16,17 +16,14 @@ public class DefaultCakeController implements CakeController {
   }
 
   public Cake getCake(long cakeId) {
-
     return cakeService.getCake(cakeId);
   }
 
   public Cake updateCake(CakeRequest cakeRequest) {
-
     return cakeService.updateCake(cakeRequest);
   }
 
   public Cake deleteCake(long cakeId) {
-
     return cakeService.deleteCake(cakeId);
   }
 }
