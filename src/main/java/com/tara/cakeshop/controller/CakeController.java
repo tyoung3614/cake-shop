@@ -56,7 +56,7 @@ public interface CakeController {
                 required = true, 
                 description = "The client ID (i.e., '1')"),
             @Parameter(
-                name = "cake Id", 
+                name = "type Id", 
                 allowEmptyValue = false, 
                 required = true, 
                 description = "The type ID (i.e., '1')"),
@@ -198,6 +198,6 @@ public interface CakeController {
   )
   @PostMapping("/delete")
   @ResponseStatus(code = HttpStatus.CREATED)
-  public Cake deleteCake(@RequestBody long cakeId);
+  public int deleteCake(@RequestBody long cakeId);
 
 }

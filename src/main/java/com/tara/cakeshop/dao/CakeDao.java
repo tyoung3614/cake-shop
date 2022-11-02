@@ -10,6 +10,6 @@ public interface CakeDao {
   
   public Cake getOrder(long cakeId);
 
-  public Cake deleteCake(long cakeId);
+  public int deleteCake(long cakeId);
 
 }

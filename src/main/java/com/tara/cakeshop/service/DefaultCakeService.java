@@ -37,7 +37,7 @@ public class DefaultCakeService implements CakeService {
   }
 
   @Override
-  public Cake deleteCake(long cakeId) {
+  public int deleteCake(long cakeId) {
     return cakeDao.deleteCake(cakeId);
   }
 

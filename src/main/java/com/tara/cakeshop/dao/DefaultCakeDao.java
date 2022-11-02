@@ -84,22 +84,10 @@ public class DefaultCakeDao implements CakeDao {
   }
 
   @Override
-  public Cake deleteCake(long cakeId) {
+  public int deleteCake(long cakeId) {
     String sql = "delete from cake where cake_id = :cakeId;";
     MapSqlParameterSource namedParameters = new MapSqlParameterSource();
     namedParameters.addValue("cakeId", cakeId);
-    return jdbcTemplate.query(sql, namedParameters, new RowMapper<Cake>() {
-      @Override
-      public Cake mapRow(ResultSet rs, int rowNum) throws SQLException {
-        // @formatter:off
-        return Cake.builder()
-            .name(rs.getString("name"))
-            .cakeId(rs.getLong("cake_id"))
-            .clientId(rs.getLong("client_id"))
-            .price(rs.getBigDecimal("price"))
-            .build();
-        // @formatter:on
-      }
-    }).get(0);
+    return jdbcTemplate.update(sql, namedParameters);
   }
   }

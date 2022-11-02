@@ -11,5 +11,5 @@ public interface CakeService {
 
   public Cake updateCake(CakeRequest cakeRequest);
 
-  public Cake deleteCake(long cakeId);
+  public int deleteCake(long cakeId);
 }

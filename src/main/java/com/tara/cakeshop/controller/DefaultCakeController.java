@@ -23,7 +23,7 @@ public class DefaultCakeController implements CakeController {
     return cakeService.updateCake(cakeRequest);
   }
 
-  public Cake deleteCake(long cakeId) {
+  public int deleteCake(long cakeId) {
     return cakeService.deleteCake(cakeId);
   }
 }
