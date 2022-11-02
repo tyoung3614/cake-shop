@@ -2,6 +2,7 @@ package com.tara.cakeshop.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -42,7 +43,7 @@ public class DefaultCakeDao implements CakeDao {
     String sql = "select * from cake where cake_id = :cakeId;";
     MapSqlParameterSource namedParameters = new MapSqlParameterSource();
     namedParameters.addValue("cakeId", cakeId);
-    return jdbcTemplate.query(sql, namedParameters, new RowMapper<Cake>() {
+    Cake cakeOrder = jdbcTemplate.query(sql, namedParameters, new RowMapper<Cake>() {
       @Override
       public Cake mapRow(ResultSet rs, int rowNum) throws SQLException {
         // @formatter:off
@@ -55,6 +56,17 @@ public class DefaultCakeDao implements CakeDao {
         // @formatter:on
       }
     }).get(0);
+    String cakeTypeSql = "select * from cake_type where cake_id = :cakeId;";
+    List<String> cakeTypes = jdbcTemplate.query(cakeTypeSql, namedParameters, new RowMapper<String>() {
+      @Override
+      public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+        // @formatter:off
+        return rs.getString("type_id");
+        // @formatter:on
+      }
+    });
+    cakeOrder.setCakeTypes(cakeTypes);
+    return cakeOrder;
   }
 
   @Override
